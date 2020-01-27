@@ -8,7 +8,6 @@ namespace Nanadjei2\Mobiforte;
 
 class Mobiforte
 {
-
     /** Package version @return string */
     const VERSION = "0.1.0";
 
