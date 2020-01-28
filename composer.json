@@ -24,10 +24,21 @@
     }
   },
   "require-dev": {
-    "phpunit/phpunit": "^8.5"
+    "phpunit/phpunit": "^8.5",
+    "orchestra/installer": "~3.0"
   },
   "scripts": {
     "test": "vendor/bin/phpunit"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Nanadjei2\\Mobiforte\\MobiforteServiceProvider"
+      ],
+      "aliases": {
+        "Mobiforte": "Nanadjei2\\Mobiforte\\Facades\\Mobiforte"
+      }
+    }
   },
   "prefer-stable": true
 }
