@@ -35,7 +35,7 @@ class Mobiforte
 
         $this->client_id =  $client_id ?: config('mobiforte.client_id');
 
-        $this->client_secret =  $client_id ?: config('mobiforte.client_secret');
+        $this->client_secret =  $client_secret ?: config('mobiforte.client_secret');
     }
 
     /** 

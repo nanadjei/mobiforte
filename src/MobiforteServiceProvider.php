@@ -9,11 +9,9 @@ class MobiforteServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        /**Publish vendor/nanadjei2/mobiforte-sms/config/mnotify.php */
-        /** to config/mobiforte.php */
-        $this->publishes([
-            __DIR__ . "/../config/mobiforte.php", base_path("config/mobiforte.php")
-        ]);
+        if ($this->app->runningInConsole()) {
+            $this->bootForConsole();
+        }
     }
 
     public function register()
@@ -24,5 +22,19 @@ class MobiforteServiceProvider extends ServiceProvider
 
         /** Config File */
         $this->mergeConfigFrom(__DIR__ . "/../config/mobiforte.php", "mobiforte");
+    }
+
+    /**
+     * Console-specific booting.
+     *
+     * @return void
+     */
+    protected function bootForConsole()
+    {
+        /**Publish vendor/nanadjei2/mobiforte-sms/config/mnotify.php */
+        /** to config/mobiforte.php */
+        $this->publishes([
+            __DIR__ . "/../config/mobiforte.php" => config_path("mobiforte.php")
+        ]);
     }
 }

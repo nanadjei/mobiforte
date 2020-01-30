@@ -1,6 +1,6 @@
 {
-  "name": "nanadjei2/mobiforte-sms",
-  "description": "An sms package for mobiforte. https://web.mobiforte.com/login",
+  "name": "nanadjei2/mobiforte",
+  "description": "An sms package for mobiforte. http://mobiforte.com",
   "type": "library",
   "license": "MIT",
   "authors": [
