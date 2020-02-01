@@ -34,7 +34,7 @@ If you're using Laravel 5.5 and above, you can skip this step.
 ```bash
 Nanadjei2\Mobiforte\Mobiforte\MobiforteServiceProvider::class,
 ```
-And the facade of the package to this package to the $aliase array.
+And the facade of the package to the $aliases array.
 
 ```bash
 'MobiforteSms' => Nanadjei2\Mobiforte\Facades\MobiforteSms::class
@@ -56,15 +56,36 @@ MOBIFORTE_SMS_CLIENT_SECRET=YourClientSecrete
 ## Usage
 Below is a basic usage guide for sending SMS and checking SMS balance of your Mobiforte account.
 
-```bash
+```php
 # Basically sending sms uses api key set in .env file.
  MobiforteSms::send('02XXXXXXXX', "Hello from the other side.");
 
 # Want to use a different api key?
  MobiforteSms::withFreshApiKeys("fresh_client_id", "fresh_client_secret")
    ->send("02XXXXXXXX", "Say hello from the other side.");
+
+# To customise sender Id,
+# NB: sender Id must not be more than 11 characters
+MobiforteSms::from('CompanyName')->send('02XXXXXXXX', 'Say hello to a customer');
 ```
 
+### Schedule When To Send Message
+A date and time in Y-m-d H:i:s format. This DateTime should only be added when you want to schedule the message at a given time.
+
+```php
+$dateTime = \Carbon\Carbon::now()->addMinutes(30); // format: 2017-05-02 00:59:00
+MobiforteSms::schedule('02XXXXXXXX', 'I have responded after 30 mins', $dateTime);
+```
+
+### Check SMS balance
+This will return your remaining balance.
+
+```php 
+MobiforteSms::balance();
+
+# To check the balance using an api key different from the one set in the .env file
+MobiforteSms::withFreshApiKeys("fresh_client_id", "fresh_client_secret")->balance();
+```
 
 ## Contributing
 Thank you for considering contributing to the package! To contribute, fork this repository, write some code and then submit a pull request to the develop branch 🤝
