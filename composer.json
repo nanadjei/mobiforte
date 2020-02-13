@@ -36,7 +36,7 @@
         "Nanadjei2\\Mobiforte\\MobiforteServiceProvider"
       ],
       "aliases": {
-        "Mobiforte": "Nanadjei2\\Mobiforte\\Facades\\Mobiforte"
+        "MobiforteSms": "Nanadjei2\\Mobiforte\\Facades\\MobiforteSms"
       }
     }
   },
