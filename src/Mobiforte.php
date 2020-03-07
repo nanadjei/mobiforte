@@ -6,20 +6,22 @@
 
 namespace Nanadjei2\Mobiforte;
 
+use GuzzleHttp\Client as Guzzle;
+
 class Mobiforte
 {
     /** Package version @return string */
     const VERSION = "0.1.0";
 
     /** Url for sending sms */
-    const SMS_ENDPOINT = "https://api.mobiforte.com/sms";
+    const SMS_ENDPOINT = "https://api.mobiforte.com/sms/";
 
     /** Then name of the sender */
     public $sender_id;
 
-    protected $client_id;
+    public $client_id;
 
-    protected $client_secret;
+    public $client_secret;
 
     public $to;
 
@@ -27,6 +29,11 @@ class Mobiforte
 
     /** For the purpose of scheduling the messsage */
     public $date_time;
+
+    public $client;
+
+    /** Guzzle query params */
+    public $guzzleQuery;
 
 
     public function __construct($sender_id = null, $client_id = null, $client_secret = null)
@@ -36,6 +43,10 @@ class Mobiforte
         $this->client_id =  $client_id ?: config('mobiforte.client_id');
 
         $this->client_secret =  $client_secret ?: config('mobiforte.client_secret');
+
+        $this->client = new Guzzle(['base_uri' => static::SMS_ENDPOINT, 'timeout' => 5]);
+
+        $this->guzzleQuery = ['client_id' => $this->client_id, 'client_secret' => $this->client_secret];
     }
 
     /** 
@@ -80,21 +91,14 @@ class Mobiforte
      */
     public function send($to = null, $message = null, $dateTime = null)
     {
-        $this->to = $to ?: $this->to;
-        $this->message = $message ?: $this->message;
-        $this->date_time = $dateTime ?: $this->dateTime;
-
         /** Construct URL */
-        $url = static::SMS_ENDPOINT . "?" .
-            "client_id=" . $this->client_id .
-            "&client_secret=" . $this->client_secret .
-            "&recipient=" . $this->to .
-            "&sender_id=" .  substr($this->sender_id, 0, 11) .
-            "&message=" . urlencode($this->message);
+        $this->guzzleQuery["recipient"] = $to;
+        $this->guzzleQuery["sender_id"] = substr($this->sender_id, 0, 11);
+        $this->guzzleQuery["message"] = $message ?: $this->message;
 
-        if (!is_null($dateTime)) $url .= "&date_time" . $dateTime;
+        if (!is_null($dateTime)) $this->guzzleQuery["date_time"] = $dateTime;
 
-        return $this->sendRequest("GET", $url);
+        return $this->sendRequest()->getBody();
     }
 
     /**
@@ -102,11 +106,7 @@ class Mobiforte
      */
     public function balance()
     {
-        $url = static::SMS_ENDPOINT . "/balance?"
-            . "client_id=" . $this->client_id .
-            "&client_secret=" . $this->client_secret;
-
-        return $this->sendRequest("GET", $url);
+        return $this->sendRequest('balance')->getBody();
     }
 
     /** 
@@ -117,17 +117,25 @@ class Mobiforte
      */
     public function schedule($to = null, $message = null, $dateTime)
     {
-        return $this->send($to, $message, $dateTime);
+        return $this->send($to, $message, $dateTime)->getBody();
     }
 
     /** THis is where the request actually get sent to mobiforte api */
-    protected function sendRequest(string $type, $url)
+    public function sendRequest(string $path = null)
     {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $type);
-        $result = curl_exec($ch);
-        return $result = json_decode($result, TRUE);
+        return $this->getClient()->get($path, ['query' => $this->guzzleQuery]);
+    }
+
+
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    public function setClient($client)
+    {
+        $this->client = $client;
+
+        return $this;
     }
 }

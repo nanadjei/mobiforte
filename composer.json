@@ -11,7 +11,8 @@
   ],
   "require": {
     "php": ">=5.6.4",
-    "illuminate/support": "5.5.* || 5.6.* || 5.7.* || 5.8.* || ^6.0"
+    "illuminate/support": "5.5.* || 5.6.* || 5.7.* || 5.8.* || ^6.0",
+    "guzzlehttp/guzzle": "^6.5"
   },
   "autoload": {
     "psr-4": {
@@ -21,11 +22,15 @@
   "autoload-dev": {
     "psr-4": {
       "Nanadjei2\\Mobiforte\\Tests\\": "tests/"
-    }
+    },
+    "files": [
+      "tests/Utilities/TestBase.php"
+    ]
   },
   "require-dev": {
     "phpunit/phpunit": "^8.5",
-    "orchestra/installer": "~3.0"
+    "orchestra/installer": "~3.0",
+    "phpspec/prophecy": "~1.0"
   },
   "scripts": {
     "test": "vendor/bin/phpunit"
