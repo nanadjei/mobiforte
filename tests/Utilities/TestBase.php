@@ -2,7 +2,7 @@
 
 namespace Test\Utilities;
 
-use Nanadjei2\Mobiforte\Mobiforte;
+use Nanadjei\Mobiforte\Mobiforte;
 
 trait TestBase
 {

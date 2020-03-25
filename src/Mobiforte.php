@@ -4,7 +4,7 @@
  * Mobiforte Api docs url: https://api.mobiforte.com/sms?client_id=?&client_secret=?&recipient=?&sender_id=?&message=?
  */
 
-namespace Nanadjei2\Mobiforte;
+namespace Nanadjei\Mobiforte;
 
 use GuzzleHttp\Client as Guzzle;
 

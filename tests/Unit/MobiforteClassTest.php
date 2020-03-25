@@ -4,7 +4,7 @@ namespace Test\Unit;
 
 use Test\Utilities\TestBase;
 use PHPUnit\Framework\TestCase;
-use Nanadjei2\Mobiforte\Mobiforte;
+use Nanadjei\Mobiforte\Mobiforte;
 
 class MobiforteClassTest extends TestCase
 {

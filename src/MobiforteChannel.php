@@ -1,9 +1,9 @@
 <?php
 
-namespace Nanadjei2\Mobiforte;
+namespace Nanadjei\Mobiforte;
 
 use Illuminate\Notifications\Notification;
-use Nanadjei2\Mobiforte\MobiforteMessage;
+use Nanadjei\Mobiforte\MobiforteMessage;
 
 class MobiforteChannel
 {
@@ -22,7 +22,7 @@ class MobiforteChannel
      *
      * @param  mixed  $notifiable
      * @param  \Illuminate\Notifications\Notification  $notification
-     * @return \Nanadjei2\Mobiforte\MNotifyMessage
+     * @return \Nanadjei\Mobiforte\MNotifyMessage
      */
     public function send($notifiable, Notification $notification)
     {

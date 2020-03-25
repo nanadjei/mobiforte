@@ -1,6 +1,6 @@
 <?php
 
-namespace Nanadjei2\Mobiforte;
+namespace Nanadjei\Mobiforte;
 
 class MobiforteMessage
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Nanadjei2\Mobiforte;
+namespace Nanadjei\Mobiforte;
 
-use Nanadjei2\Mobiforte\Mobiforte;
+use Nanadjei\Mobiforte\Mobiforte;
 use Illuminate\Support\ServiceProvider;
 
 class MobiforteServiceProvider extends ServiceProvider
@@ -31,7 +31,7 @@ class MobiforteServiceProvider extends ServiceProvider
      */
     protected function bootForConsole()
     {
-        /**Publish vendor/nanadjei2/mobiforte-sms/config/mnotify.php */
+        /**Publish vendor/nanadjei/mobiforte-sms/config/mnotify.php */
         /** to config/mobiforte.php */
         $this->publishes([
             __DIR__ . "/../config/mobiforte.php" => config_path("mobiforte.php")

@@ -1,6 +1,6 @@
 <?php
 
-namespace Nanadjei2\Mobiforte\Facades;
+namespace Nanadjei\Mobiforte\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

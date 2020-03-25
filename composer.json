@@ -1,5 +1,5 @@
 {
-  "name": "nanadjei2/mobiforte",
+  "name": "nanadjei/mobiforte",
   "description": "An sms package for mobiforte. http://mobiforte.com",
   "type": "library",
   "license": "MIT",
@@ -16,12 +16,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Nanadjei2\\Mobiforte\\": "src/"
+      "Nanadjei\\Mobiforte\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Nanadjei2\\Mobiforte\\Tests\\": "tests/"
+      "Nanadjei\\Mobiforte\\Tests\\": "tests/"
     },
     "files": [
       "tests/Utilities/TestBase.php"
@@ -38,10 +38,10 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Nanadjei2\\Mobiforte\\MobiforteServiceProvider"
+        "Nanadjei\\Mobiforte\\MobiforteServiceProvider"
       ],
       "aliases": {
-        "MobiforteSms": "Nanadjei2\\Mobiforte\\Facades\\MobiforteSms"
+        "MobiforteSms": "Nanadjei\\Mobiforte\\Facades\\MobiforteSms"
       }
     }
   },
