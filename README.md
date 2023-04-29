@@ -34,7 +34,7 @@ composer update
 
 After updating Composer, add the ServiceProvider to the providers array in config/app.php
 
-### Laravel <= 5.4
+### Laravel => 5.4
 
 If you're using Laravel 5.5 and above, you can skip this step.
 
@@ -50,7 +50,11 @@ And the facade of the package to the \$aliases array.
 
 ### Configuration
 
-Before you can start sending SMS you will need to set your api keys and default sender ID in your `.env` file. You can find your api key and api secret here `https://web.mobiforte.com/developer`
+Before you can start sending SMS you will need to set your api keys and default sender ID in your `.env` file. You can find your api key and api secret here `https://web.mobiforte.com/developer` and publish your config.
+
+```bash
+php artisan vendor:publish --provider="Nanadjei\Mobiforte\MobiforteServiceProvider"
+```
 
 ```
 # In your root directory .env

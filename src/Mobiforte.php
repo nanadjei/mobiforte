@@ -14,7 +14,7 @@ class Mobiforte
     const VERSION = "0.1.0";
 
     /** Url for sending sms */
-    const SMS_ENDPOINT = "https://api.mobiforte.com/sms/";
+    const SMS_ENDPOINT = 'https://api.mobiforte.com/sms/';
 
     /** Then name of the sender */
     public $sender_id;
@@ -27,7 +27,7 @@ class Mobiforte
 
     public $message;
 
-    /** For the purpose of scheduling the messsage */
+    /** For the purpose of scheduling the message */
     public $date_time;
 
     public $client;
@@ -50,10 +50,10 @@ class Mobiforte
     }
 
     /** 
-     * $sender_id is the name that will oppear on the receiver's phone.
+     * $sender_id is the name that will appear on the receiver's phone.
      * This can be overwritten.
      */
-    public function from($senderId)
+    public function from($senderId) : Self
     {
         $this->sender_id = $senderId;
 
@@ -74,7 +74,7 @@ class Mobiforte
      * @param $clientId is the fresh client id;
      * @param $clientSecret is the fresh client secret;
      */
-    public function withFreshApiKeys(string $clientId, string $clientSecret)
+    public function withFreshApiKeys(string $clientId, string $clientSecret) : Self
     {
         $this->client_id = $clientId;
 
@@ -85,8 +85,8 @@ class Mobiforte
 
     /**
      * Send Sms to Phone number
-     * @param  int $to recepient phone number.
-     * @param  string $message    messge to be sent.
+     * @param  int $to recipient phone number.
+     * @param  string $message    message to be sent.
      * @param  string $dateTime 	schedule.
      */
     public function send($to = null, $message = null, $dateTime = null)
@@ -104,7 +104,7 @@ class Mobiforte
     /**
      * Check sms balance.
      */
-    public function balance()
+    public function balance() : string
     {
         return $this->sendRequest('balance')->getBody();
     }
@@ -123,7 +123,8 @@ class Mobiforte
     /** THis is where the request actually get sent to mobiforte api */
     public function sendRequest(string $path = null)
     {
-        return $this->getClient()->get($path, ['query' => $this->guzzleQuery]);
+        $url = static::SMS_ENDPOINT . $path;
+        return $this->getClient()->get($url, ['query' => $this->guzzleQuery]);
     }
 
 
