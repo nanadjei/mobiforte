@@ -20,6 +20,14 @@ class MobiforteMessage
     public $from;
 
     /**
+     * The phone number
+     * the message should be sent to.
+     *
+     * @var string
+     */
+    public $to;
+
+    /**
      * The message type.
      *
      * @var string
@@ -65,7 +73,7 @@ class MobiforteMessage
     }
 
     /**
-     * Set the phone of the reciever.
+     * Set the phone of the receiver.
      *
      * @param  string  $from
      * @return $this

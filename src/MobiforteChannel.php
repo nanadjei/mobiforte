@@ -36,6 +36,10 @@ class MobiforteChannel
             $this->sms->from($message->from);
         }
 
-        return $this->sms->send(($notification->phone ?: $notifiable->phone), trim($message->content));
+        if ($message->to) {
+            $this->sms->to($message->to);
+        }
+
+        return $this->sms->send(($message->to ?: $notifiable->phone), trim($message->content));
     }
 }

@@ -23,7 +23,7 @@ class Mobiforte
 
     public $client_secret;
 
-    public $to;
+    public $recipient;
 
     public $message;
 
@@ -61,6 +61,17 @@ class Mobiforte
     }
 
     /** 
+     * $recipient is the number that will appear on the receiver's phone.
+     * This can be overwritten.
+     */
+    public function to($recipient) : Self
+    {
+        $this->recipient = $recipient;
+
+        return $this;
+    }
+
+    /** 
      * Get the api key of the 
      * @return string
      */
@@ -89,10 +100,11 @@ class Mobiforte
      * @param  string $message    message to be sent.
      * @param  string $dateTime 	schedule.
      */
-    public function send($to = null, $message = null, $dateTime = null)
+    public function send($recipient = null, $message = null, $dateTime = null)
     {
+        logger()->info('DATA', [$this->sender_id, $this->recipient]);
         /** Construct URL */
-        $this->guzzleQuery["recipient"] = $to;
+        $this->guzzleQuery["recipient"] = $recipient ?: $this->recipient;
         $this->guzzleQuery["sender_id"] = substr($this->sender_id, 0, 11);
         $this->guzzleQuery["message"] = $message ?: $this->message;
 
