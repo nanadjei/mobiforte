@@ -33,8 +33,6 @@
     "orchestra/installer": "~3.0",
     "phpspec/prophecy": "~1.0"
   },
-  "minimum-stability": "dev",
-  "prefer-stable": true,
   "scripts": {
     "test": "vendor/bin/phpunit"
   },
