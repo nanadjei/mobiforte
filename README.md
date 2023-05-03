@@ -21,7 +21,7 @@ Require this package:
 ```bash
 {
     "require": {
-       "nanadjei/mobiforte": "0.1.*"
+       "nanadjei/mobiforte": "0.2.*"
     }
 }
 ```
@@ -78,7 +78,7 @@ Below is a basic usage guide for sending SMS and checking SMS balance of your Mo
  MobiforteSms::withFreshApiKeys("fresh_client_id", "fresh_client_secret")
    ->send("02XXXXXXXX", "Say hello from the other side.");
 
-# To customise sender Id,
+# To customize sender Id,
 # NB: sender Id must not be more than 11 characters
 MobiforteSms::from('CompanyName')->send('02XXXXXXXX', 'Say hello to a customer');
 ```
